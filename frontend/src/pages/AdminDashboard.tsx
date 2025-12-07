@@ -146,7 +146,7 @@ const AdminDashboard = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6"
                 >
-                    {activeTab === 'settings' && <SettingsTab settings={settings} setSettings={setSettings} />}
+                    {activeTab === 'settings' && <SettingsTab settings={settings} />}
                     {activeTab === 'users' && <UsersTab users={users} fetchUsers={fetchUsers} loading={loading} />}
                     {activeTab === 'servers' && <ServersTab servers={servers} fetchServers={fetchServers} loading={loading} />}
                     {activeTab === 'plans' && <PlansTab plans={plans} fetchPlans={fetchPlans} loading={loading} />}
@@ -161,7 +161,7 @@ const AdminDashboard = () => {
 };
 
 // Settings Tab
-const SettingsTab = ({ settings, setSettings }: { settings: any; setSettings?: any }) => {
+const SettingsTab = ({ settings }: { settings: any }) => {
     const [showTestEmailModal, setShowTestEmailModal] = useState(false);
     const [testEmailAddress, setTestEmailAddress] = useState('');
 
