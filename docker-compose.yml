@@ -16,9 +16,9 @@ services:
     networks:
       - freedash-network
     healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 10s
-      timeout: 5s
+      timeout: 10s
       retries: 5
       start_period: 40s
 
@@ -51,10 +51,10 @@ services:
       NODE_ENV: production
       PORT: 3000
       MONGODB_URI: ${MONGODB_URI:-mongodb://mongodb:27017/freedash}
-      JWT_SECRET: ${JWT_SECRET}
-      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
-      PTERODACTYL_URL: ${PTERODACTYL_URL}
-      PTERODACTYL_API_KEY: ${PTERODACTYL_API_KEY}
+      JWT_SECRET: ${JWT_SECRET:-changeme}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-changeme}
+      PTERODACTYL_URL: ${PTERODACTYL_URL:-}
+      PTERODACTYL_API_KEY: ${PTERODACTYL_API_KEY:-}
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_PASSWORD: ${REDIS_PASSWORD:-changeme}
